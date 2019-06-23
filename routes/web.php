@@ -22,22 +22,25 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login'])
 
 Route::get('logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/', 'Attorney\AttorneyController@dashboard');
 
 /* Attorney Routes */
 Route::group(['prefix'=>'attorney', 'namespace' => 'Attorney', 'middleware' => 'guest'], function(){
-    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AttorneyController@dashboard']);
+    Route::get('/', ['as' => 'dashboard', 'uses' => 'AttorneyController@dashboard']);
+	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AttorneyController@dashboard']);
 });
 
 
 /* Employer Routes */
 Route::group(['prefix' => 'employer', 'namespace' => 'Employer', 'middleware' => 'guest'], function(){
 	//print_r(\Auth::user()); die;
+	Route::get('/', ['as' => 'dashboard', 'uses' => 'EmployerController@dashboard']);
 	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'EmployerController@dashboard']);
 });
 
 /* Employee Routes */
 Route::group(['prefix'=>'emp', 'namespace' => 'Employee', 'middleware' => 'guest'], function(){
+    Route::get('/', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
     Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
 });
 

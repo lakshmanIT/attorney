@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/attorney';
 
     /**
      * Create a new controller instance.
@@ -55,16 +55,16 @@ class LoginController extends Controller
         ]);
 		if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended('/attorney/dashboard');
+            return redirect()->intended('/attorney');
         }
 
         if (Auth::guard('ptnr')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended('/employer/dashboard');
+            return redirect()->intended('/employer');
         }
 		if (Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended('/employee/dashboard');
+            return redirect()->intended('/employee');
         }
         return back()->withInput($request->only('email', 'remember'));
     }
