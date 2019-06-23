@@ -19,11 +19,11 @@
 										<div class="input-group-prepend"> <span class="input-group-text"> <i class="material-icons">email</i> </span> </div>
 										<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email...">
 
-										@error('email')
+										@if ($errors->has('email'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ isset($message) ? $message : '' }}</strong>
 											</span>
-										@enderror
+										@endif
 									</div>
 									</span>
 									<span class="bmd-form-group">
@@ -31,11 +31,11 @@
 										<div class="input-group-prepend"> <span class="input-group-text"> <i class="material-icons">lock_outline</i> </span> </div>
 										<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password...">
 
-											@error('password')
+											@if ($errors->has('password'))
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ isset($message) ? $message : '' }}</strong>
 												</span>
-											@enderror
+											@endif
 									</div>
 									</span>
 									
