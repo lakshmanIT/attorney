@@ -39,7 +39,7 @@ Route::group(['prefix' => 'employer', 'namespace' => 'Employer', 'middleware' =>
 });
 
 /* Employee Routes */
-Route::group(['prefix'=>'emp', 'namespace' => 'Employee', 'middleware' => 'guest'], function(){
+Route::group(['prefix'=>'employee', 'namespace' => 'Employee', 'middleware' => 'guest'], function(){
     Route::get('/', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
     Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
 });

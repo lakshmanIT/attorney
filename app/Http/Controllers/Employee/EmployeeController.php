@@ -15,8 +15,7 @@ class EmployeeController extends Controller
      */
     public function __construct()
     {
-		print_r(Auth::guard('ptnr')->user()); die;
-        $this->middleware('auth');
+		$this->middleware('auth');
     }
 
     /**
@@ -24,7 +23,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function dashboard()
     {
         return view('employee/dashboard');
     }
