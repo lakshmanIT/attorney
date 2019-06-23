@@ -57,15 +57,31 @@ class LoginController extends Controller
 
             return redirect()->intended('/attorney');
         }
-
+		
+		Auth::shouldUse('ptnr');
         if (Auth::guard('ptnr')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
             return redirect()->intended('/employer');
         }
+		
+		Auth::shouldUse('employee');
 		if (Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/employee');
         }
         return back()->withInput($request->only('email', 'remember'));
+    }
+	/**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('login');
     }
 }

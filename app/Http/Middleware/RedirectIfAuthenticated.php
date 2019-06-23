@@ -9,16 +9,14 @@ class RedirectIfAuthenticated
 {
 	public function handle($request, Closure $next, $guard = null)
 	{
-		if ($guard == "admin" && Auth::guard($guard)->check()) {
-			return redirect('/admin');
+		$defaultGuard = config('auth.defaults.guard');
+		$action = $request->route()->getActionMethod();
+		
+		if($defaultGuard != $guard && $action == 'showLoginForm')
+		{
+			return redirect()->intended('login');
 		}
-		if ($guard == "writer" && Auth::guard($guard)->check()) {
-			return redirect('/writer');
-		}
-		if ($guard == "web" && Auth::guard($guard)->check()) {
-			return redirect('/home');
-		}
-
+			
 		return $next($request);
 	}
 }

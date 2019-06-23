@@ -12,6 +12,12 @@ class EmployerController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+	 
+	public function __construct()
+    {
+        //$this->middleware('auth');
+    } 
+	 
     public function dashboard()
     {
 		return view('employer/dashboard');

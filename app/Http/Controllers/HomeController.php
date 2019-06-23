@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest')->except(['logout']);
     }
 
     /**
@@ -23,6 +23,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		$guard = config('auth.defaults.guard');
+		if($guard == 'ptnr' && !empty(auth()->user()))
+		{
+			return redirect()->intended('/employer');
+		}
+		else if($guard == 'employee' && !empty(auth()->user()))
+		{
+			return redirect()->intended('/employee');
+		}
+		else if($guard == 'web' && !empty(auth()->user()))
+		{
+			return redirect()->intended('/attorney');
+		}
+        return view('auth.login');
     }
+	
 }

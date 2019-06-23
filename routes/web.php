@@ -20,27 +20,30 @@ Auth::routes();
 Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login']);
 
-Route::get('logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::get('/', 'Attorney\AttorneyController@dashboard');
+
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+
+Route::get('logout', ['uses' => 'Auth\LoginController@logout']);
 
 /* Attorney Routes */
-Route::group(['prefix'=>'attorney', 'namespace' => 'Attorney', 'middleware' => 'guest'], function(){
-    Route::get('/', ['as' => 'dashboard', 'uses' => 'AttorneyController@dashboard']);
+Route::group(['prefix'=>'attorney', 'namespace' => 'Attorney', 'middleware' => 'guest:web'], function(){
+    Route::get('/', ['uses' => 'AttorneyController@dashboard']);
 	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AttorneyController@dashboard']);
 });
 
 
 /* Employer Routes */
-Route::group(['prefix' => 'employer', 'namespace' => 'Employer', 'middleware' => 'guest'], function(){
+Route::group(['prefix' => 'employer', 'namespace' => 'Employer', 'middleware' => 'guest:ptnr'], function(){
 	//print_r(\Auth::user()); die;
-	Route::get('/', ['as' => 'dashboard', 'uses' => 'EmployerController@dashboard']);
+	Route::get('/', ['uses' => 'EmployerController@dashboard']);
 	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'EmployerController@dashboard']);
 });
 
 /* Employee Routes */
-Route::group(['prefix'=>'employee', 'namespace' => 'Employee', 'middleware' => 'guest'], function(){
-    Route::get('/', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
+Route::group(['prefix'=>'employee', 'namespace' => 'Employee', 'middleware' => 'guest:employee'], function(){
+    Route::get('/', ['uses' => 'EmployeeController@dashboard']);
     Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'EmployeeController@dashboard']);
 });
 
