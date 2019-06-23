@@ -29,7 +29,8 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/attorney';
-
+	
+	
     /**
      * Create a new controller instance.
      *
@@ -44,8 +45,7 @@ class LoginController extends Controller
 	
 	public function showLoginForm()
     {
-		$this->guard()->logout();
-        return view('auth.login');
+		return view('auth.login');
     }
 
     public function login(Request $request)

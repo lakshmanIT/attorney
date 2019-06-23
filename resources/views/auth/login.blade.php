@@ -13,7 +13,7 @@
 
 							<div class="card-body">
 								
-									@csrf
+									{{ csrf_field() }}
 									<span class="bmd-form-group">
 									<div class="input-group">
 										<div class="input-group-prepend"> <span class="input-group-text"> <i class="material-icons">email</i> </span> </div>

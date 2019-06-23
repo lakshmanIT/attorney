@@ -58,13 +58,13 @@ class Handler extends ExceptionHandler
 			return response()->json(['error' => 'Unauthenticated.'], 401);
 		}
 		if ($request->is('web') || $request->is('attorney/*')) {
-			return redirect()->guest('/login');
+			return abort(404);
 		}
-		if ($request->is('ptnr') || $request->is('ptnr/*')) {
-			return redirect()->guest('/login');
+		if ($request->is('ptnr') || $request->is('employer/*')) {
+			return abort(404);
 		}
 		if ($request->is('employee') || $request->is('employee/*')) {
-			return redirect()->guest('/login');
+			return abort(404);
 		}
 		return redirect()->guest(route('login'));
 	}

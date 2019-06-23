@@ -36,7 +36,7 @@ class HomeController extends Controller
 		{
 			return redirect()->intended('/attorney');
 		}
-        return view('auth.login');
+        return redirect('logout');
     }
 	
 }
