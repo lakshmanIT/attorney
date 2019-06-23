@@ -44,6 +44,7 @@ class LoginController extends Controller
 	
 	public function showLoginForm()
     {
+		$this->guard()->logout();
         return view('auth.login');
     }
 
