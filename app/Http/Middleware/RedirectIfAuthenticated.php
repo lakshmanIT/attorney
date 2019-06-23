@@ -14,7 +14,7 @@ class RedirectIfAuthenticated
 		
 		if($defaultGuard != $guard && $action == 'showLoginForm')
 		{
-			return redirect()->intended('login');
+			//return redirect()->intended('login');
 		}
 			
 		return $next($request);
