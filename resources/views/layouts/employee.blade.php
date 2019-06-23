@@ -125,7 +125,6 @@
 			  <div class="container-fluid">
 				<nav class="float-left">
 				  <ul>
-					<li> <a href="#"> Creative Tim </a> </li>
 					<li> <a href="#"> About Us </a> </li>
 					<li> <a href="#"> Blog </a> </li>
 					<li> <a href="#"> Licenses </a> </li>
@@ -135,7 +134,7 @@
 				  <script>
 								  document.write(new Date().getFullYear())
 								</script>
-				  Envision. All rights reserved. Design by&nbsp;<a href="http://aakrutisolutions.com/" target="_blank">Aakruti.</a> </div>
+				  Attorney. All rights reserved</div>
 			  </div>
 			</footer>
 			</div>
